@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hozan"
+authors = [
+    {name = "Waheed"}
+]
+version = "0.1.0"
+description = "A simple and modern no-code platform for building Telegram bots with Titan"
+readme = "README.en.md"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+keywords = ["telegram", "bot", "no-code", "bot-builder", "titan"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Communications :: Chat",
+    "Typing :: Typed",
+]
+
+dependencies = [
+    "titan-framework>=1.0.0b1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+]
+
+[project.scripts]
+hozan = "hozan.core.app.main:main"
+
+[project.urls]
+Homepage = "https://github.com/WaheedFox/Hozan"
+Issues = "https://github.com/WaheedFox/Hozan/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
