@@ -10,9 +10,7 @@ class Hozan:
         self.bot = Titan(token)
 
     def run(self) -> None:
-        """Run the bot using Titan's synchronous runner."""
         self.bot.run()
 
     async def run_async(self) -> None:
-        """Run the bot using Titan's asynchronous runner."""
         await self.bot.run_async()

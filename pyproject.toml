@@ -35,9 +35,6 @@ dev = [
     "pytest-asyncio>=1.4.0",
 ]
 
-[project.scripts]
-hozan = "hozan.core.app.main:main"
-
 [project.urls]
 Homepage = "https://github.com/WaheedFox/Hozan"
 Issues = "https://github.com/WaheedFox/Hozan/issues"
