@@ -1,26 +1,30 @@
 from __future__ import annotations
 
-from titan import Titan
-
 from hozan.core.lifecycle.runtime import Lifecycle
 from hozan.features.identity import HozanIdentityService, MemoryAccountRepository
 from hozan.features.registration.start import build_router
+from hozan.platform.telegram.application import TelegramApplication
 
 
 class Hozan:
-    """Main Hozan application composed on top of Titan."""
+    """Main Hozan application composed above the Telegram boundary."""
 
     def __init__(self, token: str) -> None:
-        self.bot = Titan(token)
+        self.telegram = TelegramApplication(token)
         self.lifecycle = Lifecycle()
 
         self.accounts = MemoryAccountRepository()
         self.identity = HozanIdentityService(self.accounts)
 
-        self.bot.include(build_router(self.identity))
+        self.telegram.include(build_router(self.identity))
+
+    @property
+    def bot(self):
+        """Expose Titan for backwards compatibility with existing callers."""
+        return self.telegram.bot
 
     def run(self) -> None:
-        self.bot.run()
+        self.telegram.run()
 
     async def run_async(self) -> None:
-        await self.bot.run_async()
+        await self.telegram.start(self.lifecycle)
